@@ -17,7 +17,7 @@ For the main analysis, the minimally preprocessed resting-state fMRI data from t
 
 ## 4.	Computation of latent *g*-factor 
 
-General cognitive ability was operationalized as latent g-factor from 12 cognitive measures (Thiele et al., 2022). This *g*-factor was calculated using simplified bi-factor analysis as outlined in Dubois et al. (2018). Code for the computation of a latent *g*-factor is provided here: https://github.com/jonasAthiele/BrainReconfiguration_Intelligence.
+General cognitive ability was operationalized as latent *g*-factor from 12 cognitive measures (Thiele et al., 2022). This *g*-factor was calculated using simplified bi-factor analysis as outlined in Dubois et al. (2018). Code for the computation of a latent *g*-factor is provided here: https://github.com/jonasAthiele/BrainReconfiguration_Intelligence.
 
 ## 5.	Structure and Script Description 
 
