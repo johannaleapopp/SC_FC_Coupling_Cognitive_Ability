@@ -13,15 +13,15 @@ AOMIC: https://openneuro.org/datasets/ds003097
 
 
 ## 3.	Preprocessing 
-For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018, strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2012; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
+For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018; strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2012; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
 
 ## 4.	Computation of latent *g*-factor 
 
 General cognitive ability was operationalized as latent *g*-factor from 12 cognitive measures (Thiele et al., 2022). This *g*-factor was calculated using simplified bi-factor analysis as outlined in Dubois et al. (2018). Code for the computation of a latent *g*-factor is provided here: https://github.com/jonasAthiele/BrainReconfiguration_Intelligence.
 
-## 5.	Structure and Script Description 
+## 5.	Structure and script description 
 
-### 5.1.	 Main Analysis 
+### 5.1.	 Main analysis 
 For the analysis done in the paper, the scripts should be run in the following order: 
 1.	`HCP_import_data`: Imports structural connectivity matrices and fMRI time courses from folder structure 
 
