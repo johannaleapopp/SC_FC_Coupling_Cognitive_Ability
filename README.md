@@ -33,27 +33,27 @@ For the analysis done in the paper, the scripts should be run in the following o
 
 5. `HCP_motion_correction_with_FD`: Motion correction using data from fractional displacement (FD). Determination of resting-state scans that need to be excluded and computation of mean FD values across the remaining scans used for confound regression in later analyses.
 
-6.	`HCP_prepare_FC_data_with_FD`: Preparation of the functional connectivity matrices. Included steps are a) import of subject IDs and fMRI time courses (of all 4 runs conducted) into a cell b) matching up node order with the node order in SC data c) computation of FC matrices d) exclusion of scans based on motion criteria e) averaging the FC matrices across the 4 runs per individual and f) Fisher-z transformation of the individual mean FC matrix. 
+6. `HCP_prepare_FC_data_with_FD`: Preparation of the functional connectivity matrices. Included steps are a) import of subject IDs and fMRI time courses (of all 4 runs conducted) into a cell b) matching up node order with the node order in SC data c) computation of FC matrices d) exclusion of scans based on motion criteria e) averaging the FC matrices across the 4 runs per individual and f) Fisher-z transformation of the individual mean FC matrix. 
 
-7.	`HCP_match_behavioral_data`: Import of all behavioral data. 
+7. `HCP_match_behavioral_data`: Import of all behavioral data. 
 
-8.	`HCP_find_subjects_that_have_all_data`: Construction of tables and cells for further analyses only containing the subjects with complete data.  
+8. `HCP_find_subjects_that_have_all_data`: Construction of tables and cells for further analyses only containing the subjects with complete data.  
 
-9.	`HCP_compute_coupling_measures`: This script is based on a script published by Zamani Esfahlani et al. (2022) and was adjusted accordingly to fit our analysis. Original code can be found here: https://github.com/brain-networks/local_scfc. Included steps are a) computation of individual similarity matrices and communication matrices and b) correlation of regional connectivity profiles in communication/similarity matrices with respective connectivity profiles of the functional connectivity matrix. 
+9. `HCP_compute_coupling_measures`: This script is based on a script published by Zamani Esfahlani et al. (2022) and was adjusted accordingly to fit our analysis. Original code can be found here: https://github.com/brain-networks/local_scfc. Included steps are a) computation of individual similarity matrices and communication matrices and b) correlation of regional connectivity profiles in communication/similarity matrices with respective connectivity profiles of the functional connectivity matrix. 
 
 10. `HCP_maximum_variance_explained_all_measures`: Calculation of the maximal variance (brain-region specific) that any of the similarity or communication measures explains in the FC for each individual. Computation and plotting of a group map visualizing the overall SC-FC coupling pattern. 
 	
-11.	`HCP_whole_brain_coupling`: Included steps are a) computation of individual brain-average coupling values for all eight coupling measures and b) partial correlations of brain-average coupling values with cognitive ability scores controlling for age, gender, handedness and in-scanner head motion.   
+11. `HCP_whole_brain_coupling`: Included steps are a) computation of individual brain-average coupling values for all eight coupling measures and b) partial correlations of brain-average coupling values with cognitive ability scores controlling for age, gender, handedness and in-scanner head motion.   
 
-12.	`HCP_NMAs_whole_sample`: Computation of a positive and negative node-measure assignment (NMA) mask for the complete sample based on the magnitude of association between coupling measures with general cognitive ability scores per brain region across all subjects, plotting of a) positive and negative NMAs b) positive and negative NMAs with measures grouped based on conceptual similarity and c) mean coupling strength for the positive and negative NMAs.  
+12. `HCP_NMAs_whole_sample`: Computation of a positive and negative node-measure assignment (NMA) mask for the complete sample based on the magnitude of association between coupling measures with general cognitive ability scores per brain region across all subjects, plotting of a) positive and negative NMAs b) positive and negative NMAs with measures grouped based on conceptual similarity, and c) mean coupling strength for the positive and negative NMAs.  
 
-13.	`HCP_internal_cross_validation_complete`: Conduction of the internal cross-validation of the multiple linear regression model that is built using two input predictor variables. The predictor variables are are derived from individual’s coupling values and extracted by using group-based positive and group-based negative NMA masks. This script contains three parts: **Part 1** partitions the sample into 5 different folds (considering family relations and intelligence distribution) and creates the positive and negative NMAs for each training fold and test fold. **Part 2** uses the NMAs created in part 1 to build multiple linear regression models that are then tested for their ability to predict general cognitive ability in the test samples. **Part 3** assesses the significance of the prediction with a permutation test. 
+13. `HCP_internal_cross_validation_complete`: Conduction of the internal cross-validation of the multiple linear regression model that is built using two input predictor variables. The predictor variables are are derived from individual’s coupling values and extracted by using group-based positive and group-based negative NMA masks. This script contains three parts: **Part 1** partitions the sample into 5 different folds (considering family relations and intelligence distribution) and creates the positive and negative NMAs for each training fold and test fold. **Part 2** uses the NMAs created in part 1 to build multiple linear regression models that are then tested for their ability to predict general cognitive ability in the test samples. **Part 3** assesses the significance of the prediction with a permutation test. 
 
-14.	`HCP_external_replication_in_AOMIC`: Construction of the multiple linear regression model in the HCP and testing for its ability to predict cognitive ability scores in the AOMIC.
+14. `HCP_external_replication_in_AOMIC`: Construction of the multiple linear regression model in the HCP and testing for its ability to predict cognitive ability scores in the AOMIC.
 
 15. `HCP_external_replication_in_AOMIC_permutation_test`: Assessment of the statistical significance of the external replication with a permutation test.
 
-16.	`HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 Yeo networks (Yeo et al., 2011) 
+16. `HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 Yeo networks (Yeo et al., 2011) 
 
 17. `HCP_AOMIC_distribution_of_general_cognitive_ability_scores`: Plotting the distribution of general cognitive ability scores in both samples. 
 
