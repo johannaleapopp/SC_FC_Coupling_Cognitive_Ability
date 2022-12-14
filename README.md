@@ -13,7 +13,7 @@ AOMIC: https://openneuro.org/datasets/ds003097
 
 
 ## 3.	Preprocessing 
-For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018; strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2012; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
+For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018; strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2019; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
 
 ## 4.	Computation of latent *g*-factor 
 
@@ -23,15 +23,15 @@ General cognitive ability was operationalized as latent *g*-factor from 12 cogni
 
 ### 5.1.	 Main analysis 
 For the analysis done in the paper, the scripts should be run in the following order (Script 1-8 are found in the subfolder `HCP Data Prep`):  
-1.	`HCP_import_data`: Import of structural connectivity matrices and fMRI time courses from folder structure.  
+1. `HCP_import_data`: Import of structural connectivity matrices and fMRI time courses from folder structure.  
 
 2. `HCP_import_motion_data`: Import of motion data from folder structure.
 
 3. `HCP_join_motion_and_behavioral`: Merge motion data with other behavioral data.
 
-4.	`HCP_prepare_SC_data`: Preparation of the structural connectivity matrices: Import of subject’s IDs and connectivity matrices into a cell that can be used for further analyses and reordering of nodes so that they match up with the FC data.  
+4. `HCP_prepare_SC_data`: Preparation of the structural connectivity matrices: Import of subject’s IDs and connectivity matrices into a cell that can be used for further analyses and reordering of nodes so that they match up with the FC data.  
 
-5.	`HCP_motion_correction_with_FD`: Motion correction using data from fractional displacement (FD). Determination of resting-state scans that need to be excluded and computation of mean FD values across the remaining scans used for confound regression in later analyses.
+5. `HCP_motion_correction_with_FD`: Motion correction using data from fractional displacement (FD). Determination of resting-state scans that need to be excluded and computation of mean FD values across the remaining scans used for confound regression in later analyses.
 
 6.	`HCP_prepare_FC_data_with_FD`: Preparation of the functional connectivity matrices. Included steps are a) import of subject IDs and fMRI time courses (of all 4 runs conducted) into a cell b) matching up node order with the node order in SC data c) computation of FC matrices d) exclusion of scans based on motion criteria e) averaging the FC matrices across the 4 runs per individual and f) Fisher-z transformation of the individual mean FC matrix. 
 
@@ -90,7 +90,7 @@ Snoek, L., van der Miesen, M. M., Beemsterboer, T., van der Leij, A., Eigenhuis,
 
 Thiele, J. A., Faskowitz, J., Sporns, O., & Hilger, K. (2022). Multitask Brain Network Reconfiguration Is Inversely Associated with Human Intelligence. *Cerebral Cortex*, bhab473. https://doi.org/10.1093/cercor/bhab473
 
-Tournier, J.-D., Calamante, F., & Connelly, A. (2012). MRtrix: Diffusion tractography in crossing fiber regions. *International Journal of Imaging Systems and Technology, 22*(1), 53–66. https://doi.org/10.1002/ima.22005
+Tournier, J.-D., Smith, R., Raffelt, D., Tabbara, R., Dhollander, T., Pietsch, M., Christiaens, D., Jeurissen, B., Yeh, C.-H., & Connelly, A. (2019). MRtrix3: A fast, flexible and open software framework for medical image processing and visualisation. *NeuroImage, 202*, 116137. https://doi.org/10.1016/j.neuroimage.2019.116137
 
 Van Essen, D. C., Smith, S. M., Barch, D. M., Behrens, T. E. J., Yacoub, E., & Ugurbil, K. (2013). The WU-Minn Human Connectome Project: An Overview. *NeuroImage, 80*, 62–79. https://doi.org/10.1016/j.neuroimage.2013.05.041
 
