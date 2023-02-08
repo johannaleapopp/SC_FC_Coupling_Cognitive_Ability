@@ -53,7 +53,7 @@ For the analysis done in the paper, the scripts should be run in the following o
 
 15. `HCP_external_replication_in_AOMIC_permutation_test`: Assessment of the statistical significance of the external replication with a permutation test.
 
-16. `HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 Yeo networks (Yeo et al., 2011) 
+16. `HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 functional Yeo networks (Yeo et al., 2011) 
 
 17. `HCP_AOMIC_distribution_of_general_cognitive_ability_scores`: Plotting the distribution of general cognitive ability scores in both samples. 
 
