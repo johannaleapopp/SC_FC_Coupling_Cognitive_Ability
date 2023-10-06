@@ -13,7 +13,7 @@ AOMIC: https://openneuro.org/datasets/ds003097
 
 
 ## 3.	Preprocessing 
-For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018; strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2012; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
+For the main analysis, the minimally preprocessed resting-state fMRI data from the HCP (Glasser et al., 2013) were used. As additional denoising strategy, nuisance regression as explained in Parkes et al. (2018; strategy no.6) with 24 head motion parameters, eight mean signals from white matter and cerebrospinal fluid and four global signals was applied. Resting-state fMRI preprocessing steps were conducted externally, and code can be found here: https://github.com/faskowit/app-fmri-2-mat. To assess individual structural connectivity, the minimally preprocessed DWI data provided by the HCP were used and we ran the MRtrix pipeline for DWI processing (Civier et al., 2019; Tournier et al., 2019; https://github.com/civier/HCP-dMRI-connectome). Probabilistic streamline tractography was carried out to render streamlines through white matter that are terminating in grey matter (Smith et al., 2012). For the replication analysis, data from the AOMIC was downloaded in minimally preprocessed form and further processed similarly as in the main sample. Brain networks were constructed using a multimodal parcellation dividing the brain into 360 nodes (Glasser et al., 2016). 
 
 ## 4.	Computation of latent *g*-factor 
 
@@ -23,37 +23,37 @@ General cognitive ability was operationalized as latent *g*-factor from 12 cogni
 
 ### 5.1.	 Main analysis 
 For the analysis done in the paper, the scripts should be run in the following order (Script 1-8 are found in the subfolder `HCP Data Prep`):  
-1.	`HCP_import_data`: Import of structural connectivity matrices and fMRI time courses from folder structure.  
+1. `HCP_import_data`: Import of structural connectivity matrices and fMRI time courses from folder structure.  
 
 2. `HCP_import_motion_data`: Import of motion data from folder structure.
 
 3. `HCP_join_motion_and_behavioral`: Merge motion data with other behavioral data.
 
-4.	`HCP_prepare_SC_data`: Preparation of the structural connectivity matrices: Import of subject’s IDs and connectivity matrices into a cell that can be used for further analyses and reordering of nodes so that they match up with the FC data.  
+4. `HCP_prepare_SC_data`: Preparation of the structural connectivity matrices: Import of subject’s IDs and connectivity matrices into a cell that can be used for further analyses and reordering of nodes so that they match up with the FC data.  
 
-5.	`HCP_motion_correction_with_FD`: Motion correction using data from fractional displacement (FD). Determination of resting-state scans that need to be excluded and computation of mean FD values across the remaining scans used for confound regression in later analyses.
+5. `HCP_motion_correction_with_FD`: Motion correction using data from fractional displacement (FD). Determination of resting-state scans that need to be excluded and computation of mean FD values across the remaining scans used for confound regression in later analyses.
 
-6.	`HCP_prepare_FC_data_with_FD`: Preparation of the functional connectivity matrices. Included steps are a) import of subject IDs and fMRI time courses (of all 4 runs conducted) into a cell b) matching up node order with the node order in SC data c) computation of FC matrices d) exclusion of scans based on motion criteria e) averaging the FC matrices across the 4 runs per individual and f) Fisher-z transformation of the individual mean FC matrix. 
+6. `HCP_prepare_FC_data_with_FD`: Preparation of the functional connectivity matrices. Included steps are a) import of subject IDs and fMRI time courses (of all 4 runs conducted) into a cell b) matching up node order with the node order in SC data c) computation of FC matrices d) exclusion of scans based on motion criteria e) averaging the FC matrices across the 4 runs per individual and f) Fisher-z transformation of the individual mean FC matrix. 
 
-7.	`HCP_match_behavioral_data`: Import of all behavioral data. 
+7. `HCP_match_behavioral_data`: Import of all behavioral data. 
 
-8.	`HCP_find_subjects_that_have_all_data`: Construction of tables and cells for further analyses only containing the subjects with complete data.  
+8. `HCP_find_subjects_that_have_all_data`: Construction of tables and cells for further analyses only containing the subjects with complete data.  
 
-9.	`HCP_compute_coupling_measures`: This script is based on a script published by Zamani Esfahlani et al. (2022) and was adjusted accordingly to fit our analysis. Original code can be found here: https://github.com/brain-networks/local_scfc. Included steps are a) computation of individual similarity matrices and communication matrices and b) correlation of regional connectivity profiles in communication/similarity matrices with respective connectivity profiles of the functional connectivity matrix. 
+9. `HCP_compute_coupling_measures`: This script is based on a script published by Zamani Esfahlani et al. (2022) and was adjusted accordingly to fit our analysis. Original code can be found here: https://github.com/brain-networks/local_scfc. Included steps are a) computation of individual similarity matrices and communication matrices and b) correlation of regional connectivity profiles in communication/similarity matrices with respective connectivity profiles of the functional connectivity matrix. 
 
-10. `HCP_maximum_variance_explained_all_measures`: Calculation of the maximal variance (brain-region specific) that any of the similarity or communication measures explains in the FC for each individual. Computation and plotting of a group map visualizing the overall SC-FC coupling pattern. 
+10. `HCP_maximum_variance_explained_all_measures`: Creation of the SC-FC coupling pattern by indentifying the coupling measure able to explain the largest variance in FC across all participants and averaging respective region-specific individual coupling values across all participants. Plotting of a group map visualizing the overall SC-FC coupling pattern. 
 	
-11.	`HCP_whole_brain_coupling`: Included steps are a) computation of individual brain-average coupling values for all eight coupling measures and b) partial correlations of brain-average coupling values with cognitive ability scores controlling for age, gender, handedness and in-scanner head motion.   
+11. `HCP_whole_brain_coupling`: Included steps are a) computation of individual brain-average coupling values for all eight coupling measures and b) partial correlations of brain-average coupling values with cognitive ability scores controlling for age, gender, handedness and in-scanner head motion.   
 
-12.	`HCP_NMAs_whole_sample`: Computation of a positive and negative node-measure assignment (NMA) mask for the complete sample based on the magnitude of association between coupling measures with general cognitive ability scores per brain region across all subjects, plotting of a) positive and negative NMAs b) positive and negative NMAs with measures grouped based on conceptual similarity and c) mean coupling strength for the positive and negative NMAs.  
+12. `HCP_NMAs_whole_sample`: Computation of a positive and negative node-measure assignment (NMA) mask for the complete sample based on the magnitude of association between coupling measures with general cognitive ability scores per brain region across all subjects, plotting of a) positive and negative NMAs b) positive and negative NMAs with measures grouped based on conceptual similarity, and c) mean coupling strength for the positive and negative NMAs.  
 
-13.	`HCP_internal_cross_validation_complete`: Conduction of the internal cross-validation of the multiple linear regression model that is built using two input predictor variables. The predictor variables are are derived from individual’s coupling values and extracted by using group-based positive and group-based negative NMA masks. This script contains three parts: **Part 1** partitions the sample into 5 different folds (considering family relations and intelligence distribution) and creates the positive and negative NMAs for each training fold and test fold. **Part 2** uses the NMAs created in part 1 to build multiple linear regression models that are then tested for their ability to predict general cognitive ability in the test samples. **Part 3** assesses the significance of the prediction with a permutation test. 
+13. `HCP_internal_cross_validation_complete`: Conduction of the internal cross-validation of the multiple linear regression model that is built using two input predictor variables. The predictor variables are are derived from individual’s coupling values and extracted by using group-based positive and group-based negative NMA masks. This script contains three parts: **Part 1** partitions the sample into 5 different folds (considering family relations and intelligence distribution) and creates the positive and negative NMAs for each training fold and test fold. **Part 2** uses the NMAs created in part 1 to build multiple linear regression models that are then tested for their ability to predict general cognitive ability in the test samples. **Part 3** assesses the significance of the prediction with a permutation test. 
 
-14.	`HCP_external_replication_in_AOMIC`: Construction of the multiple linear regression model in the HCP and testing for its ability to predict cognitive ability scores in the AOMIC.
+14. `HCP_external_replication_in_AOMIC`: Construction of the multiple linear regression model in the HCP and testing for its ability to predict cognitive ability scores in the AOMIC.
 
 15. `HCP_external_replication_in_AOMIC_permutation_test`: Assessment of the statistical significance of the external replication with a permutation test.
 
-16.	`HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 Yeo networks (Yeo et al., 2011) 
+16. `HCP_post_hoc_analyses`: Conduction of post-hoc analyses using the Margulies gradient (Margulies et al., 2016) and assignment of coupling measures to the 7 functional Yeo networks (Yeo et al., 2011) 
 
 17. `HCP_AOMIC_distribution_of_general_cognitive_ability_scores`: Plotting the distribution of general cognitive ability scores in both samples. 
 
@@ -90,7 +90,7 @@ Snoek, L., van der Miesen, M. M., Beemsterboer, T., van der Leij, A., Eigenhuis,
 
 Thiele, J. A., Faskowitz, J., Sporns, O., & Hilger, K. (2022). Multitask Brain Network Reconfiguration Is Inversely Associated with Human Intelligence. *Cerebral Cortex*, bhab473. https://doi.org/10.1093/cercor/bhab473
 
-Tournier, J.-D., Calamante, F., & Connelly, A. (2012). MRtrix: Diffusion tractography in crossing fiber regions. *International Journal of Imaging Systems and Technology, 22*(1), 53–66. https://doi.org/10.1002/ima.22005
+Tournier, J.-D., Smith, R., Raffelt, D., Tabbara, R., Dhollander, T., Pietsch, M., Christiaens, D., Jeurissen, B., Yeh, C.-H., & Connelly, A. (2019). MRtrix3: A fast, flexible and open software framework for medical image processing and visualisation. *NeuroImage, 202*, 116137. https://doi.org/10.1016/j.neuroimage.2019.116137
 
 Van Essen, D. C., Smith, S. M., Barch, D. M., Behrens, T. E. J., Yacoub, E., & Ugurbil, K. (2013). The WU-Minn Human Connectome Project: An Overview. *NeuroImage, 80*, 62–79. https://doi.org/10.1016/j.neuroimage.2013.05.041
 
