@@ -41,7 +41,7 @@ For the analysis done in the paper, the scripts should be run in the following o
 
 9. `HCP_compute_coupling_measures`: This script is based on a script published by Zamani Esfahlani et al. (2022) and was adjusted accordingly to fit our analysis. Original code can be found here: https://github.com/brain-networks/local_scfc. Included steps are a) computation of individual similarity matrices and communication matrices and b) correlation of regional connectivity profiles in communication/similarity matrices with respective connectivity profiles of the functional connectivity matrix. 
 
-10. `HCP_maximum_variance_explained_all_measures`: Calculation of the maximal variance (brain-region specific) that any of the similarity or communication measures explains in the FC for each individual. Computation and plotting of a group map visualizing the overall SC-FC coupling pattern. 
+10. `HCP_maximum_variance_explained_all_measures`: Creation of the SC-FC coupling pattern by indentifying the coupling measure able to explain the largest variance in FC across all participants and averaging respective region-specific individual coupling values across all participants. Plotting of a group map visualizing the overall SC-FC coupling pattern. 
 	
 11. `HCP_whole_brain_coupling`: Included steps are a) computation of individual brain-average coupling values for all eight coupling measures and b) partial correlations of brain-average coupling values with cognitive ability scores controlling for age, gender, handedness and in-scanner head motion.   
 
